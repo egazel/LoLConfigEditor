@@ -6,4 +6,4 @@ Having the files on read-only to avoid issues when switching in game accounts ma
 
 This project goals are:
   - Familiarize myself with tools making in C# and WPF environment.
-  - <em>Scratch that itch</em> and avoid annoying myself with this little QOL tool
+  - <em>Scratch that itch</em> and avoid getting annoyed with this little QOL tool
