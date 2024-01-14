@@ -22,6 +22,7 @@ using Newtonsoft;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text.Json;
 using Newtonsoft.Json;
+using static LeagueOfLegendsConfigEditor.CFGHelper;
 
 namespace LeagueOfLegendsConfigEditor
 {
@@ -32,43 +33,12 @@ namespace LeagueOfLegendsConfigEditor
 
     public partial class MainWindow : Window
     {
-        // TODO custom popup w/ field for user to select the game folder path if different
-        public static string cfgFolderPth = @"C:\Riot Games\League of Legends\Config\";
-        public static string gameCfgPth = cfgFolderPth + "game.cfg";
-
-        private OrderedDictionary gameCfgBreakout = new OrderedDictionary();
-
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void ParseGameCfgToDict()
-        {
-            gameCfgBreakout.Clear();
-            StreamReader sr = new StreamReader(gameCfgPth);
-            string line = "";
-            while ((line = sr.ReadLine()) != null)
-            {
-                int idx = 0;
-                if (!string.IsNullOrWhiteSpace(line))
-                {
-                    string[] splitLine = line.Split("=");
-                    if (splitLine.Length > 1)
-                    {
-                        gameCfgBreakout.Add(splitLine[0], splitLine[1]);
-                    }
-                    else
-                    {
-                        gameCfgBreakout.Add(splitLine[0], "");
-                    }
-                    ++idx;
-                }
-            }
-            sr.Close();
-        }
-
-        private void GenerateGameCfgUIFromOrderedDict()
+        internal void GenerateGameCfgUI()
         {
             OptionsStackPanel.Children.Clear();
             foreach (DictionaryEntry de in gameCfgBreakout)
@@ -155,60 +125,6 @@ namespace LeagueOfLegendsConfigEditor
                 }
             }
         }
-
-        // TODO Generate UI from PersistedSettings.Json in second tab
-        private void SaveGameCfg()
-        {
-            FileInfo fileInfo = new FileInfo(gameCfgPth);
-            fileInfo.IsReadOnly = false;
-            File.WriteAllText(gameCfgPth, String.Empty);
-
-            using (StreamWriter outputFile = new StreamWriter(gameCfgPth))
-            {
-                foreach (DictionaryEntry de in gameCfgBreakout)
-                {
-                    // Clean "_" used in place of spaces in Names to fit the keys in the cfg
-                    string cleanKeyStr = (de.Key.ToString()).Replace("_", " ");
-                    string valStr = de.Value.ToString();
-                    if (cleanKeyStr.Contains("["))
-                    {
-                        outputFile.WriteLine($"\n{cleanKeyStr}");
-                    }
-                    else
-                    {
-                        outputFile.WriteLine($"{cleanKeyStr}={valStr}");
-                    }
-                }
-            }
-            fileInfo.IsReadOnly = true;
-        }
-
-        private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
-        {
-            if (GameCfgTab.IsSelected)
-            {
-                SaveGameCfg();
-                GenerateGameCfgUIFromOrderedDict();
-            }
-            else
-            {
-                // TODO save PersistedSettings.json
-            }
-        }
-
-        private void btnRevertChanges_Click(object sender, RoutedEventArgs e)
-        {
-            if (GameCfgTab.IsSelected)
-            {
-                ParseGameCfgToDict();
-                GenerateGameCfgUIFromOrderedDict();
-            }
-            else
-            {
-                // TODO Load PersistedSettings.json + generate UI
-            }
-        }
-
         private void scrollBarLineUp(object sender, RoutedEventArgs e)
         {
             scrollBar.LineUp();
@@ -244,6 +160,18 @@ namespace LeagueOfLegendsConfigEditor
             gameCfgBreakout[(cb.Name).Replace("_", " ")] = cbVal;
         }
 
+        private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            SaveGameCfg();
+            GenerateGameCfgUI();
+        }
+
+        private void btnRevertChanges_Click(object sender, RoutedEventArgs e)
+        {
+            ParseGameCfgToDict();
+            GenerateGameCfgUI();
+        }
+
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (GameCfgTab.IsSelected)
@@ -251,7 +179,7 @@ namespace LeagueOfLegendsConfigEditor
                 if (gameCfgBreakout.Count == 0)
                 {
                     ParseGameCfgToDict();
-                    GenerateGameCfgUIFromOrderedDict();
+                    GenerateGameCfgUI();
                 }
             }
             else

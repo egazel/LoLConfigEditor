@@ -16,12 +16,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
                 <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"
                               Name="scrollBar" Grid.Column="0" Grid.Row="0">
                     <StackPanel Grid.Row="0" Grid.Column="0" Margin="15,20,15,20" Name="OptionsStackPanel"/>
                 </ScrollViewer>
-
                 <StackPanel Grid.Row="1" Grid.Column="0" Margin="5,10,5,10" Orientation="Horizontal" 
                             HorizontalAlignment="center">
                     <Button x:Name="btnRevertChanges"
