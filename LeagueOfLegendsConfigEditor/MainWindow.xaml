@@ -1,0 +1,46 @@
+﻿<Window x:Class="LeagueOfLegendsConfigEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeagueOfLegendsConfigEditor"
+        mc:Ignorable="d"
+        Title="LoL Config Editor" Width="500" Height="770">
+    <TabControl SelectionChanged="TabControl_SelectionChanged">
+        <TabItem Header="Game.cfg" Name="GameCfgTab">
+            <Grid x:Name="GameCfgGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"
+                              Name="scrollBar" Grid.Column="0" Grid.Row="0">
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="15,20,15,20" Name="OptionsStackPanel"/>
+                </ScrollViewer>
+
+                <StackPanel Grid.Row="1" Grid.Column="0" Margin="5,10,5,10" Orientation="Horizontal" 
+                            HorizontalAlignment="center">
+                    <Button x:Name="btnRevertChanges"
+                            Width="90" Height="25" 
+                            Grid.Row="1" Grid.Column="0" 
+                            VerticalAlignment="Center"
+                            Click="btnRevertChanges_Click">Revert changes
+                    </Button>
+                    <Button x:Name="btnSaveChanges" 
+                            Margin="10,0,0,0"
+                            Width="90" Height="25" 
+                            Grid.Row="1" Grid.Column="0" 
+                            VerticalAlignment="Center"
+                            Click="btnSaveChanges_Click">Save game.cfg
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="PersistedSettings.json" Name="Tab2">
+        </TabItem>
+    </TabControl>
+</Window>
