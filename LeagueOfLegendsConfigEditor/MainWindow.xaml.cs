@@ -74,12 +74,12 @@ namespace LeagueOfLegendsConfigEditor
                         ColumnDefinition col0 = new ColumnDefinition();
                         ColumnDefinition col1 = new ColumnDefinition();
                         col0.Width = new GridLength(300);
-                        
+
                         grid.ColumnDefinitions.Add(col0);
                         grid.HorizontalAlignment = HorizontalAlignment.Left;
                         grid.ColumnDefinitions.Add(col1);
-                        grid.Margin = new Thickness(20, 0, 20,0);
-                        
+                        grid.Margin = new Thickness(20, 0, 20, 0);
+
                         System.Windows.Controls.Label lb = new System.Windows.Controls.Label();
                         lb.Content = keyStr;
                         lb.FontSize = 13;
@@ -151,7 +151,7 @@ namespace LeagueOfLegendsConfigEditor
         {
             CheckBox cb = sender as CheckBox;
             int cbVal = Convert.ToInt32(cb.IsChecked);
-            if ((gameCfgBreakout[cb.Name.Replace("_", " ")]) != cbVal.ToString())
+            if ((gameCfgBreakout[cb.Name.Replace("_", " ")]).ToString() != cbVal.ToString())
             {
                 // if value changed, feedback via colour changing
                 cb.Background = new SolidColorBrush(Colors.Goldenrod);
