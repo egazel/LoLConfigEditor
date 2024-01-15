@@ -192,8 +192,8 @@ namespace LeagueOfLegendsConfigEditor
             }
             else
             {
+                // TODO BIND DATAS via template to correctly edit/save
                 CrawlJson(TreeView1);
-                // TODO Load and generate UI for PersistedSettings
             }
         }
     }
