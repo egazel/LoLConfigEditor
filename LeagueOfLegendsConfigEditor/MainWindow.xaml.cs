@@ -23,9 +23,11 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Text.Json;
 using Newtonsoft.Json;
 using static LeagueOfLegendsConfigEditor.CFGHelper;
+using static LeagueOfLegendsConfigEditor.JsonParserHelper;
 using UserControl = System.Windows.Controls.UserControl;
 using CheckBox = System.Windows.Controls.CheckBox;
 using TextBox = System.Windows.Controls.TextBox;
+using Newtonsoft.Json.Linq;
 
 namespace LeagueOfLegendsConfigEditor
 {
@@ -40,6 +42,8 @@ namespace LeagueOfLegendsConfigEditor
         {
             InitializeComponent();
         }
+
+        internal static string cfgFolderPth = @"C:\Riot Games\League of Legends\Config\";
 
         internal void GenerateGameCfgUI()
         {
@@ -128,6 +132,7 @@ namespace LeagueOfLegendsConfigEditor
                 }
             }
         }
+
         private void scrollBarLineUp(object sender, RoutedEventArgs e)
         {
             scrollBar.LineUp();
@@ -187,6 +192,7 @@ namespace LeagueOfLegendsConfigEditor
             }
             else
             {
+                CrawlJson(TreeView1);
                 // TODO Load and generate UI for PersistedSettings
             }
         }

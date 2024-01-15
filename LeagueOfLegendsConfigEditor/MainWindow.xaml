@@ -38,7 +38,38 @@
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="PersistedSettings.json" Name="Tab2">
+        <TabItem Header="PersistedSettings.json" Name="PersistedSettingsTab">
+            <Grid x:Name="PersistedSettingsGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"
+                              Name="scrollBar2" Grid.Column="0" Grid.Row="0">
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="15,20,15,20" Name="PSStackPanel">
+                        <TreeView x:Name="TreeView1" Margin="10,0,10,0"/>
+                    </StackPanel>
+                </ScrollViewer>
+                <StackPanel Grid.Row="1" Grid.Column="0" Margin="5,10,5,10" Orientation="Horizontal" 
+                            HorizontalAlignment="center">
+                    <Button x:Name="btnRevertChanges2"
+                            Width="90" Height="25" 
+                            Grid.Row="1" Grid.Column="0" 
+                            VerticalAlignment="Center"
+                            Click="btnRevertChanges_Click">Revert changes
+                    </Button>
+                    <Button x:Name="btnSaveChanges2" 
+                            Margin="10,0,0,0"
+                            Width="140" Height="25" 
+                            Grid.Row="1" Grid.Column="0" 
+                            VerticalAlignment="Center"
+                            Click="btnSaveChanges_Click">Save PersistedSettings.json
+                    </Button>
+                </StackPanel>
+            </Grid>
         </TabItem>
     </TabControl>
 </Window>

@@ -13,9 +13,8 @@ namespace LeagueOfLegendsConfigEditor
     internal class CFGHelper
     {
         // TODO custom popup w/ field for user to select the game folder path if different
-        internal static string cfgFolderPth = @"C:\Riot Games\League of Legends\Config\";
         internal static OrderedDictionary gameCfgBreakout = new OrderedDictionary();
-        internal static string gameCfgPth = cfgFolderPth + "game.cfg";
+        internal static string gameCfgPth = MainWindow.cfgFolderPth + "game.cfg";
 
         protected internal static void ParseGameCfgToDict()
         {
