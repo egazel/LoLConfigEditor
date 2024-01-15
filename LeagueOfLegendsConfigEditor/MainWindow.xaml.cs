@@ -23,6 +23,9 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Text.Json;
 using Newtonsoft.Json;
 using static LeagueOfLegendsConfigEditor.CFGHelper;
+using UserControl = System.Windows.Controls.UserControl;
+using CheckBox = System.Windows.Controls.CheckBox;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace LeagueOfLegendsConfigEditor
 {
@@ -62,7 +65,7 @@ namespace LeagueOfLegendsConfigEditor
                         bd.Background = new SolidColorBrush(Colors.Lavender);
                         bd.Child = lb;
 
-                        grid.HorizontalAlignment = HorizontalAlignment.Center;
+                        grid.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
                         grid.Children.Add(bd);
 
                         UserControl u1 = new UserControl();
@@ -76,7 +79,7 @@ namespace LeagueOfLegendsConfigEditor
                         col0.Width = new GridLength(300);
 
                         grid.ColumnDefinitions.Add(col0);
-                        grid.HorizontalAlignment = HorizontalAlignment.Left;
+                        grid.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                         grid.ColumnDefinitions.Add(col1);
                         grid.Margin = new Thickness(20, 0, 20, 0);
 
@@ -85,16 +88,16 @@ namespace LeagueOfLegendsConfigEditor
                         lb.FontSize = 13;
                         lb.Foreground = new SolidColorBrush(Colors.MidnightBlue);
                         lb.VerticalAlignment = VerticalAlignment.Center;
-                        lb.HorizontalAlignment = HorizontalAlignment.Left;
+                        lb.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                         Grid.SetColumn(lb, 0);
                         grid.Children.Add(lb);
 
                         // If it's a 0/1 (will be represented by a checkbox except special cases)
                         if ((valStr == "0" || valStr == "1") && !keyStr.Contains("Speed") && !keyStr.Contains("Quality"))
                         {
-                            CheckBox cb = new CheckBox();
+                            System.Windows.Controls.CheckBox cb = new CheckBox();
                             cb.VerticalAlignment = VerticalAlignment.Center;
-                            cb.HorizontalAlignment = HorizontalAlignment.Right;
+                            cb.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
 
                             cb.IsChecked = (Convert.ToInt32(valStr) == 1);
                             cb.Name = keyStr.Replace(" ", "_");
